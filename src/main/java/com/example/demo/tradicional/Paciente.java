@@ -1,23 +1,40 @@
 package com.example.demo.tradicional;
 
 public class Paciente {
-	private String nombre, cedula;
+	
+	private String nombre, cedula, tipo;
+	
+	
+	@Override
+	public String toString() {
+		return "Paciente [nombre=" + nombre + ", cedula=" + cedula + "]";
+	}
+
+
 	
 	//GETTER & SETTER
 
-	public String getNombre() {
+	protected String getTipo() {
+		return tipo;
+	}
+
+	protected void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	protected String getNombre() {
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
+	protected void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-	public String getCedula() {
+	protected String getCedula() {
 		return cedula;
 	}
 
-	public void setCedula(String cedula) {
+	protected void setCedula(String cedula) {
 		this.cedula = cedula;
 	}
 	
