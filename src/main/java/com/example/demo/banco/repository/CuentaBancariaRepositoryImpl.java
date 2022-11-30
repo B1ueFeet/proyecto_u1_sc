@@ -21,23 +21,36 @@ public class CuentaBancariaRepositoryImpl implements ICuentaBancariaRepository{
 		cuenta.setSaldo(new BigDecimal(100));
 		cuenta.setTipo("A");
 		cuenta.setTitular("Serghy C.");
+		for (CuentaBancaria cb : baseCuentas) {
+			if (cb.getNumero().equals(numCuenta)) {
+				cuenta = cb;
+			}
+		}
+		
+		System.out.println("se actualiza la cuenta: "+ numCuenta);
+
 		return cuenta;
 	}
 
 	@Override
 	public CuentaBancaria buscar(Integer id) {
+		
+		System.out.println("se esta buscando la cuenta: " + id);
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void actualizar(CuentaBancaria cuentaBancaria) {
+		System.out.println("se actualiza la cuenta: "+ cuentaBancaria);
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void insertar(CuentaBancaria cuentaBancaria) {
+		System.out.println("se actualiza la cuenta: "+ cuentaBancaria);
+
 		// TODO Auto-generated method stub
 		baseCuentas.add(cuentaBancaria);
 		
@@ -46,6 +59,8 @@ public class CuentaBancariaRepositoryImpl implements ICuentaBancariaRepository{
 	@Override
 	public void borrar(Integer id) {
 		// TODO Auto-generated method stub
+		System.out.println("se actualiza la cuenta: "+ id);
+
 		
 	}
 	

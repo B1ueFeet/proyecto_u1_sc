@@ -1,46 +1,42 @@
 package com.example.demo;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.Spring.boot.CitaMedicaSB;
-import com.example.demo.Spring.boot.MedicoSB;
-import com.example.demo.Spring.boot.PacienteCancerSB;
-import com.example.demo.Spring.boot.PacienteTerceraEdadSB;
-import com.example.demo.herencia.MedicoH;
+import com.example.demo.banco.modelo.CuentaBancaria;
+import com.example.demo.banco.service.ICuentaBancariaService;
 
 @SpringBootApplication
 public class ProyectoU1ScApplication implements CommandLineRunner {
+	
+	@Autowired
+	private ICuentaBancariaService bancariaService;
 
-	@Autowired
-	private PacienteTerceraEdadSB pacienteTerceraE;
-	@Autowired
-	private CitaMedicaSB citaM;
-	@Autowired
-	private MedicoSB medico;
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU1ScApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-		System.out.println("Spring Boot");
-		System.out.println(pacienteTerceraE);
-		this.pacienteTerceraE.setCodigoIESS("12345");
-		this.pacienteTerceraE.setNombre("Edison");
-		this.pacienteTerceraE.setCedula("17171547");
-		this.pacienteTerceraE.setTipo("");
+		CuentaBancaria bancaria1 = new CuentaBancaria();
+		bancaria1.setNumero("0002");
+		bancaria1.setSaldo(new BigDecimal(200));
+		bancaria1.setTipo("A");
+		bancaria1.setTitular("Serghy Castillo");
 		
-		medico.setCedula("123123");
-		medico.setNombre("Diana");
 		
-		citaM.agendar("123123", LocalDateTime.of(2022, 12, 2, 8, 30),pacienteTerceraE, medico);
-		System.out.println(pacienteTerceraE);
+		CuentaBancaria bancaria2 = new CuentaBancaria();
+		bancaria2.setNumero("0023");
+		bancaria2.setSaldo(new BigDecimal(300));
+		bancaria2.setTipo("B");
+		bancaria2.setTitular("Edison Moncayo");
+		
+		this.bancariaService.insertar(bancaria1);
+		this.bancariaService.insertar(bancaria2);
 		
 	}
 
