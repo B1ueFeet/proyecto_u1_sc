@@ -9,7 +9,7 @@ import com.example.demo.banco.modelo.Transferencia;
 
 @Repository
 public class TransferenciaReposotoryImpl implements ITransferenciaRepository {
-	
+
 	private List<Transferencia> baseDatos = new ArrayList<>();
 
 	@Override
@@ -22,7 +22,7 @@ public class TransferenciaReposotoryImpl implements ITransferenciaRepository {
 	@Override
 	public void actualizar(Transferencia tranferencia) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class TransferenciaReposotoryImpl implements ITransferenciaRepository {
 	@Override
 	public void borrar(Integer id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

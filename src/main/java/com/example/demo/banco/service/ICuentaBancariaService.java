@@ -4,11 +4,14 @@ import com.example.demo.banco.modelo.CuentaBancaria;
 
 public interface ICuentaBancariaService {
 	public CuentaBancaria buscarPorNumero(String numCuenta);
-	
-	//CRUD
+
+	// CRUD
 	public CuentaBancaria buscar(Integer id);
+
 	public void actualizar(CuentaBancaria cuentaBancaria);
+
 	public void insertar(CuentaBancaria cuentaBancaria);
+
 	public void borrar(Integer id);
 
 }
