@@ -1,24 +1,30 @@
 package com.example.demo;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.banco.modelo.CuentaBancaria;
-import com.example.demo.banco.modelo.Transferencia;
-import com.example.demo.banco.service.ICuentaBancariaService;
-import com.example.demo.banco.service.ITransferenciaService;
+import com.example.demo.ejercicio1.modelo.Propietario;
+import com.example.demo.ejercicio1.modelo.Vehiculo;
+import com.example.demo.ejercicio1.service.IMatriculaService;
+import com.example.demo.ejercicio1.service.IPropietarioService;
+import com.example.demo.ejercicio1.service.IVehiculoSservice;
 
 @SpringBootApplication
 public class ProyectoU1ScApplication implements CommandLineRunner {
 
 	@Autowired
-	private ICuentaBancariaService bancariaService;
+	private IVehiculoSservice vehiculoSservice;
+
 	@Autowired
-	private ITransferenciaService transferenciaService;
+	private IPropietarioService propietarioService;
+
+	@Autowired
+	private IMatriculaService matriculaService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU1ScApplication.class, args);
@@ -26,54 +32,31 @@ public class ProyectoU1ScApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		
-		
-		
-		CuentaBancaria bancaria1 = new CuentaBancaria();
-		bancaria1.setNumero("0002");
-		bancaria1.setSaldo(new BigDecimal(200));
-		bancaria1.setTipo("A");
-		bancaria1.setTitular("Serghy Castillo");
-		this.bancariaService.insertar(bancaria1);
 
-		CuentaBancaria bancaria2 = new CuentaBancaria();
-		bancaria2.setNumero("0023");
-		bancaria2.setSaldo(new BigDecimal(300));
-		bancaria2.setTipo("B");
-		bancaria2.setTitular("Edison Moncayo");
-		this.bancariaService.insertar(bancaria2);
-		
-		System.err.println("SALDOS 	ACTAULES");
-		CuentaBancaria cuentaActual  = this.bancariaService.buscarPorNumero("0002");
-		CuentaBancaria CuentaActual2  = this.bancariaService.buscarPorNumero("0023");
-		
-		System.out.println("Saldo Actual:" + cuentaActual.getSaldo());
-		System.out.println("Saldo Actual:" + CuentaActual2.getSaldo());
-		
-		System.out.println("Reporte 1");
-		for(Transferencia t : this.transferenciaService.buscarReporte()) {
-			System.out.println(t);
-		}
+		// opcion 1
+		Vehiculo vehiculo = new Vehiculo();
+		vehiculo.setMarca("TOYOTA");
+		vehiculo.setPlaca("PDG-9939");
+		vehiculo.setPrecio(new BigDecimal(20000));
+		vehiculo.setTipo("P");
 
-		this.transferenciaService.realizar("0002", "0023", new BigDecimal(10));
-		
-		System.out.println("Reporte 2");
-		for(Transferencia t : this.transferenciaService.buscarReporte()) {
-			System.out.println(t);
-		}
-		
-		
-		System.err.println("SALDOS NUEVOS");
-		CuentaBancaria cuentaActual3  = this.bancariaService.buscarPorNumero("0002");
-		CuentaBancaria cuentaActual4  = this.bancariaService.buscarPorNumero("0023");
-		
-		System.out.println("Nuevo saldo:" + cuentaActual3.getSaldo());
-		System.out.println("Nuevo saldo:" + cuentaActual4.getSaldo());
+		this.vehiculoSservice.crear(vehiculo);
 
-		
-		
+		vehiculo.setMarca("Toyota");
+		vehiculo.setTipo("L");
 
+		this.vehiculoSservice.modificar(vehiculo);
 
+		// Opciuon 2
+		Propietario propietario = new Propietario();
+		propietario.setApellido("Castillo");
+		propietario.setCedula("17171844466");
+		propietario.setNombre("Serghy");
+		propietario.setFechaNacimiento(LocalDateTime.of(1997, 7, 12, 12, 35));
+		this.propietarioService.agregar(propietario);
+		
+		// OPCION 3
+		this.matriculaService.matricular("17171844466", "PDG-9939");
 	}
 
 }
