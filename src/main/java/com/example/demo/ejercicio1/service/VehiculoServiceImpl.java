@@ -9,39 +9,43 @@ import com.example.demo.ejercicio1.modelo.Vehiculo;
 import com.example.demo.ejercicio1.repository.IVehiculoRepository;
 
 @Service
-public class VehiculoServiceImpl implements IVehiculoSservice {
+public class VehiculoServiceImpl implements IVehiculoService {
+
 	@Autowired
-	private IVehiculoRepository vehiculoRepository;
+	private IVehiculoRepository iVehiculoRepository;
 
 	@Override
 	public Vehiculo buscar(String placa) {
-		return this.vehiculoRepository.buscar(placa);
+		// TODO Auto-generated method stub
+		return this.iVehiculoRepository.buscar(placa);
 	}
 
 	@Override
 	public void crear(Vehiculo vehiculo) {
-		this.vehiculoRepository.insertar(vehiculo);
+		// TODO Auto-generated method stub
+		this.iVehiculoRepository.insertar(vehiculo);
 	}
 
 	@Override
 	public void modificar(Vehiculo vehiculo) {
-		this.vehiculoRepository.actualizar(vehiculo);
+		// TODO Auto-generated method stub
+		this.iVehiculoRepository.actualizar(vehiculo);
 	}
 
 	@Override
 	public void quitar(String placa) {
-		this.vehiculoRepository.borrar(placa);
+		// TODO Auto-generated method stub
+		this.iVehiculoRepository.borrar(placa);
 	}
 
 	@Override
-	public void modificar(BigDecimal precio, String marca, String placa) {
+	public void modificar(String placa,BigDecimal precio, String marca) {
 		// TODO Auto-generated method stub
-		
-		Vehiculo vehiculo = this.buscar(placa);
+		Vehiculo vehiculo = this.iVehiculoRepository.buscar(placa);
 		vehiculo.setMarca(marca);
 		vehiculo.setPrecio(precio);
 		
-		this.vehiculoRepository.actualizar(vehiculo);
+		this.iVehiculoRepository.actualizar(vehiculo);
 		
 	}
 

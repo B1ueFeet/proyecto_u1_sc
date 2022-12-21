@@ -10,21 +10,22 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.ejercicio1.modelo.Propietario;
 import com.example.demo.ejercicio1.modelo.Vehiculo;
-import com.example.demo.ejercicio1.service.IMatriculaService;
+import com.example.demo.ejercicio1.repository.IVehiculoRepository;
+import com.example.demo.ejercicio1.service.IGestorMatriculaService;
 import com.example.demo.ejercicio1.service.IPropietarioService;
-import com.example.demo.ejercicio1.service.IVehiculoSservice;
 
 @SpringBootApplication
 public class ProyectoU1ScApplication implements CommandLineRunner {
 
 	@Autowired
-	private IVehiculoSservice vehiculoSservice;
+	private IVehiculoRepository vehiculoRepository;
 
 	@Autowired
 	private IPropietarioService propietarioService;
 
+
 	@Autowired
-	private IMatriculaService matriculaService;
+	private IGestorMatriculaService gestorMatriculaService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU1ScApplication.class, args);
@@ -40,23 +41,23 @@ public class ProyectoU1ScApplication implements CommandLineRunner {
 		vehiculo.setPrecio(new BigDecimal(20000));
 		vehiculo.setTipo("P");
 
-		this.vehiculoSservice.crear(vehiculo);
+		this.vehiculoRepository.insertar(vehiculo);
 
 		vehiculo.setMarca("Toyota");
 		vehiculo.setTipo("L");
 
-		this.vehiculoSservice.modificar(vehiculo);
+		this.vehiculoRepository.actualizar(vehiculo);;
 
-		// Opciuon 2
+		// Opcion 2
 		Propietario propietario = new Propietario();
 		propietario.setApellido("Castillo");
 		propietario.setCedula("17171844466");
 		propietario.setNombre("Serghy");
 		propietario.setFechaNacimiento(LocalDateTime.of(1997, 7, 12, 12, 35));
-		this.propietarioService.agregar(propietario);
-		
+		this.propietarioService.guardar(propietario);
+
 		// OPCION 3
-		this.matriculaService.matricular("17171844466", "PDG-9939");
+		this.gestorMatriculaService.matricular("17171844466", "PDG-9939");
 	}
 
 }

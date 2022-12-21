@@ -7,20 +7,21 @@ import com.example.demo.ejercicio1.modelo.Propietario;
 import com.example.demo.ejercicio1.repository.IPropietarioRepository;
 
 @Service
-public class PropietarioServiceImpl implements IPropietarioService{
+public class PropietarioServiceImpl implements IPropietarioService {
+
 	@Autowired
-	private IPropietarioRepository propietarioRepository;
+	private IPropietarioRepository iPropietarioRepository;
+
 	@Override
-	public void agregar(Propietario propietario) {
-		// TODO Auto-generated method stub
-		this.propietarioRepository.insertar(propietario);
-		
+	public void guardar(Propietario propietario) {
+		this.iPropietarioRepository.insertar(propietario);
+
 	}
 
 	@Override
-	public void eliminar(Propietario propietario) {
+	public void eliminar(String cedula) {
 		// TODO Auto-generated method stub
-		this.propietarioRepository.eliminar(propietario);
+		this.iPropietarioRepository.eliminar(cedula);
 	}
 
 }

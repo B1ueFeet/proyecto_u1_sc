@@ -10,14 +10,15 @@ import com.example.demo.ejercicio1.modelo.Vehiculo;
 @Repository
 public class VehiculoRepositoryImpl implements IVehiculoRepository {
 
-	private static List<Vehiculo> base = new ArrayList<>();
-
+	
+	private static List <Vehiculo> base = new ArrayList<>();
+	
 	@Override
 	public Vehiculo buscar(String placa) {
-
+		// TODO Auto-generated method stub
 		Vehiculo vehiculo = null;
-		for (Vehiculo v : base) {
-			if (v.getPlaca().equals(placa)) {
+		for(Vehiculo v : base) {
+			if(v.getPlaca().equals(placa)) {
 				vehiculo = v;
 			}
 		}
@@ -26,28 +27,29 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 
 	@Override
 	public void insertar(Vehiculo vehiculo) {
-
+		// TODO Auto-generated method stub
 		base.add(vehiculo);
-
 	}
 
 	@Override
 	public void actualizar(Vehiculo vehiculo) {
-
-		Vehiculo vehiculoEncontrado = null;
-		for (Vehiculo v : base) {
-			if (v.getPlaca().equals(vehiculo.getPlaca())) {
-				vehiculoEncontrado = v;
+		// TODO Auto-generated method stub
+		Vehiculo vehi = null;
+		for(Vehiculo v : base) { //me recorre la base de datos
+			if(v.getPlaca().equals(vehiculo.getPlaca())) {
+				vehi = v;
 			}
-		}
-		base.remove(vehiculoEncontrado);
+	     }
+		base.remove(vehi);
 		base.add(vehiculo);
+		
 	}
+		
 
 	@Override
 	public void borrar(String placa) {
-
-		base.remove(this.buscar(placa));
+		// TODO Auto-generated method stub
+		base.remove(this.buscar(placa)); //Remove no usa String por ello
 	}
 
 }
